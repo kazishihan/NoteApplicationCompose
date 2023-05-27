@@ -10,6 +10,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.shihan.noteapplication.data.NotesDateSource
+import com.shihan.noteapplication.screen.NoteScreen
 import com.shihan.noteapplication.ui.theme.NoteApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                
+                    NoteScreen(notes = NotesDateSource().loadNotes(), onAddNote = {}, onRemoveNote = {})
                 }
             }
         }
