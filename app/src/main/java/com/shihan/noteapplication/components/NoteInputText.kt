@@ -52,8 +52,8 @@ fun NoteInputText(
             imeAction = ImeAction.Done
         ),
         keyboardActions = KeyboardActions(onDone = {
-            keyboardController?.hide()
             onImeAction()
+            keyboardController?.hide()
         }),
         modifier = modifier,
         colors = TextFieldDefaults.textFieldColors(containerColor = Color.Transparent)
@@ -97,9 +97,9 @@ fun NoteRow(
                 },
             horizontalAlignment = Alignment.Start
         ) {
-            Text(text = note.title, style = MaterialTheme.typography.titleMedium)
-            Text(text = note.descriptor, style = MaterialTheme.typography.bodySmall)
-            Text(text = note.entryDate.format(DateTimeFormatter.ISO_DATE_TIME), style = MaterialTheme.typography.labelSmall)
+            Text(text = note.title, style = MaterialTheme.typography.titleMedium, color = Color.Black)
+            Text(text = note.descriptor, style = MaterialTheme.typography.bodySmall,color = Color.Black)
+            Text(text = note.entryDate.format(DateTimeFormatter.ISO_DATE_TIME), style = MaterialTheme.typography.labelSmall, color = Color.Black)
         }
     }
 }

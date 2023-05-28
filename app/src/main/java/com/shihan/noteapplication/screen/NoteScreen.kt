@@ -73,7 +73,7 @@ fun NoteScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             NoteInputText(
-                text = "",
+                text = title,
                 label = "Add title",
                 onTextChange = {
                     if (it.all { char -> char.isLetter() || char.isWhitespace() }) {
@@ -84,11 +84,11 @@ fun NoteScreen(
             )
             
             NoteInputText(
-                text = "",
+                text = description,
                 label = "Add Description",
                 onTextChange = {
                     if (it.all { char -> char.isLetter() || char.isWhitespace() }) {
-                        title = it
+                        description = it
                     }
                 },
                 modifier = Modifier.padding(top = 9.dp, bottom = 8.dp)
@@ -96,7 +96,12 @@ fun NoteScreen(
             
             NoteButton(text = "Save", onClick = {
                 if (title.isNotBlank() && description.isNotBlank()) {
-                    /// save notes
+                    onAddNote(
+                        Note(
+                            title = title,
+                            descriptor = description
+                        )
+                    )
                     title = ""
                     description = ""
                 }
@@ -104,9 +109,12 @@ fun NoteScreen(
             
             Divider(modifier = Modifier.padding(10.dp))
             LazyColumn {
-                items(notes){noteItem->
-                    NoteRow(note = noteItem)
+                items(notes) { noteItem ->
+                    NoteRow(note = noteItem, onNoteClicked = {
+                        onRemoveNote(it)
+                    })
                 }
+                
             }
             
         }
